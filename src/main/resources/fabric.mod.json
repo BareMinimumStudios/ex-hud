@@ -2,14 +2,15 @@
     "schemaVersion": 1,
     "id": "exhud",
     "version": "${version}",
-    "name": "Ex HUD",
+    "name": "Ex HUD: Directors Cut",
     "description": "Standalone mod bringing back the old PlayerEx HUD.",
     "authors": [
-        "CleverNucleus"
+        "CleverNucleus",
+        "MerryweatherLost"
     ],
     "contact": {
-        "homepage": "https://github.com/CleverNucleus/PlayerEx",
-        "sources": "https://github.com/CleverNucleus/PlayerEx"
+        "homepage": "https://github.com/PlayerEXDirectorsCut/playerex",
+        "sources": "https://github.com/PlayerEXDirectorsCut/ex-hud"
     },
     "license": "MIT",
     "icon": "assets/exhud/icon.png",
@@ -26,9 +27,9 @@
         "exhud.mixins.json"
     ],
     "depends": {
-        "fabricloader": ">=0.14.19",
-        "minecraft": "1.19.4",
-        "fabric-api": ">=0.76.0",
+        "fabricloader": ">=0.14.21",
+        "minecraft": "1.20.1",
+        "fabric-api": ">=0.83.0",
         "java": ">=17"
     }
 }

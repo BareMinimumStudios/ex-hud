@@ -72,18 +72,18 @@ publishing {
 	}
 }
 
-modrinth {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    System.out.println("Enter a Modrinth token: ");
-    token = br.readLine();
-    projectId = "387DYXF9"
-    versionNumber = "${project.mod_version}"
-    versionName = "${project.mod_version}"
-    uploadFile = remapJar
-    gameVersions = ["${project.minecraft_version}"]
-    loaders = ["fabric"]
-    dependencies = [
-		new VersionDependency("Atr5M7ky", "embedded"),
-		new VersionDependency("Pz1hLqTB", "required")
-	]
-}
+//modrinth {
+//    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//    System.out.println("Enter a Modrinth token: ");
+//    token = br.readLine();
+//    projectId = "387DYXF9"
+//    versionNumber = "${project.mod_version}"
+//    versionName = "${project.mod_version}"
+//    uploadFile = remapJar
+//    gameVersions = ["${project.minecraft_version}"]
+//    loaders = ["fabric"]
+//    dependencies = [
+//		new VersionDependency("Atr5M7ky", "embedded"),
+//		new VersionDependency("Pz1hLqTB", "required")
+//	]
+//}
