@@ -1,19 +1,16 @@
-import com.modrinth.minotaur.dependencies.VersionDependency
-
 plugins {
-	id 'fabric-loom' version '1.1-SNAPSHOT'
+	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
 	id "com.modrinth.minotaur" version "2.+"
+	id "org.jetbrains.kotlin.jvm" version "2.0.0"
 }
-
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
 repositories {
+	mavenCentral()
 	maven {
 		name = "MidnightLib"
 		url = "https://api.modrinth.com/maven"
@@ -22,33 +19,81 @@ repositories {
 		name = "TerraformersMC"
 		url = "https://maven.terraformersmc.com"
 	}
+	maven {
+		name = "wispForestReleases"
+		url = uri("https://maven.wispforest.io/releases")
+	}
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+	}
+	maven {
+		name = "Nucleoid"
+		url = "https://maven.nucleoid.xyz/"
+	}
+	maven {
+		url = "https://maven.kosmx.dev/"
+	}
+	maven {
+		name = 'ParchmentMC'
+		url = 'https://maven.parchmentmc.org'
+	}
+	maven {
+		name = 'Quilt'
+		url = "https://maven.quiltmc.org/repository/release/"
+	}
+	maven { url "https://maven.ryanliptak.com/" }
+	maven { url "https://maven.shedaniel.me/" }
 }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	mappings loom.layered() {
+		mappings("org.quiltmc:quilt-mappings:${project.minecraft_version}+build.${project.quilt_mappings_version}:intermediary-v2")
+		officialMojangMappings()
+		parchment("org.parchmentmc.data:parchment-${project.parchment_version}@zip")
+	}
+
+	modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
-	modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
-	include "maven.modrinth:midnightlib:${project.midnightlib_version}"
-	
-	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
+	modImplementation("net.fabricmc:fabric-language-kotlin:${project.fabric_language_kotlin_version}")
+
+	modImplementation include("maven.modrinth:midnightlib:${midnightlib_version}")
+
+	modImplementation("com.terraformersmc:modmenu:${modmenu_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
+
+	modRuntimeOnly("squeek.appleskin:appleskin-fabric:${appleskin_version}") {
+		exclude module: 'modmenu'
+	}
+	modCompileOnly("squeek.appleskin:appleskin-fabric:${appleskin_version}:api") {
+		transitive = false
+	}
+
+	modApi("maven.modrinth:thermoo:${thermoo_version}")
+
+// // if testing with thermoo
+//	modImplementation("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
+//		exclude(group: "net.fabricmc.fabric-api")
+//	}
+//
+//	modRuntimeOnly("maven.modrinth:scorchful:${scorchful_version}")
+//	modRuntimeOnly("maven.modrinth:dehydration:${dehydration_version}+${minecraft_version}
+
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${mixinextras_version}")))
 }
 
 processResources {
 	inputs.property "version", project.version
-	
+
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}
 }
 
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
-}
+tasks.withType(JavaCompile).configureEach { it.options.release = 17 }
 
 java {
 	withSourcesJar()
@@ -59,31 +104,3 @@ jar {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
 }
-
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
-		}
-	}
-	
-	repositories {
-		
-	}
-}
-
-//modrinth {
-//    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//    System.out.println("Enter a Modrinth token: ");
-//    token = br.readLine();
-//    projectId = "387DYXF9"
-//    versionNumber = "${project.mod_version}"
-//    versionName = "${project.mod_version}"
-//    uploadFile = remapJar
-//    gameVersions = ["${project.minecraft_version}"]
-//    loaders = ["fabric"]
-//    dependencies = [
-//		new VersionDependency("Atr5M7ky", "embedded"),
-//		new VersionDependency("Pz1hLqTB", "required")
-//	]
-//}

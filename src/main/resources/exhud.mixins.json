@@ -1,15 +1,12 @@
 {
     "required": true,
     "minVersion": "0.8",
-    "package": "com.github.clevernucleus.exhud.mixin",
+    "package": "com.bibireden.exhud.mixin",
     "compatibilityLevel": "JAVA_17",
-    "mixins": [
-        
-    ],
-    "client": [
-        "InGameHudMixin"
-    ],
+    "mixins": [],
+    "client": ["GuiMixin"],
     "injectors": {
         "defaultRequire": 1
-    }
+    },
+    "plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin"
 }

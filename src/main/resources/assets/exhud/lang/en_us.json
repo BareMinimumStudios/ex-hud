@@ -2,5 +2,7 @@
     "exhud.midnightconfig.title": "Ex HUD Config",
     "exhud.midnightconfig.renderCustomHealthbar": "Render Custom Healthbar",
     "exhud.midnightconfig.renderCustomUtilities": "Render Custom Utilities",
+    "exhud.midnightconfig.renderCustomJumpBar": "Render Custom Jump-Bar",
+    "exhud.midnightconfig.renderCustomExperienceBar": "Render Custom Experience Bar",
     "exhud.midnightconfig.enableFoodStat": "Enable Food Stat"
 }

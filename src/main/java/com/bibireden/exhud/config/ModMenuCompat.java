@@ -1,6 +1,6 @@
-package com.github.clevernucleus.exhud.config;
+package com.bibireden.exhud.config;
 
-import com.github.clevernucleus.exhud.ExHUD;
+import com.bibireden.exhud.ExHUD;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 

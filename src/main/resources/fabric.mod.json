@@ -5,8 +5,9 @@
     "name": "Ex HUD: Directors Cut",
     "description": "Standalone mod bringing back the old PlayerEx HUD.",
     "authors": [
-        "CleverNucleus",
-        "MerryweatherLost"
+        "bibireden",
+        "Bare Minimum Studios (B.M.S)",
+        "CleverNucleus"
     ],
     "contact": {
         "homepage": "https://github.com/PlayerEXDirectorsCut/playerex",
@@ -17,10 +18,13 @@
     "environment": "client",
     "entrypoints": {
         "client": [
-            "com.github.clevernucleus.exhud.ExHUD"
+            "com.bibireden.exhud.ExHUD"
         ],
         "modmenu": [
-        	"com.github.clevernucleus.exhud.config.ModMenuCompat"
+            "com.bibireden.exhud.config.ModMenuCompat"
+        ],
+        "appleskin": [
+            "com.bibireden.exhud.compat.appleskin.AppleSkinEventHandler"
         ]
     },
     "mixins": [
